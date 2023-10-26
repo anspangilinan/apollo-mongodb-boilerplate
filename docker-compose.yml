@@ -1,0 +1,31 @@
+version: "3.8"
+services:
+  mongo:
+    image: mongo
+    restart: on-failure
+    command: mongod --port 27020
+    ports:
+      - 27020:27020
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=example
+
+  api:
+    build:
+      context: .
+    restart: on-failure
+    depends_on:
+      - mongo
+    ports:
+      - 9000:9000
+    environment:
+      - PORT=9000
+      - MONGODB_URL=mongodb://root:example@mongo:27020/
+      - MONGODB_DBNAME=sample-db-name
+      - MONGODB_USE_SSL=false
+    volumes:
+      - .:/api
+
+volumes:
+  db:
+    driver: local
