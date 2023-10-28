@@ -1,12 +1,25 @@
+import { ApolloServer } from "@apollo/server";
+import { GraphQLSchema } from "graphql";
+import { Server } from "http";
 import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHttpServer";
 import { WebSocketServer } from "ws";
 import { useServer } from "graphql-ws/lib/use/ws";
 import context from "./context";
 
+interface IWebSocketServerInitializer {
+  apolloServer: ApolloServer;
+  httpServer: Server;
+  graphqlSchema: GraphQLSchema;
+}
+
 export class WebSocketServerInitializer {
   public wsServer: WebSocketServer;
 
-  constructor({ apolloServer, httpServer, graphqlSchema }) {
+  constructor({
+    apolloServer,
+    httpServer,
+    graphqlSchema,
+  }: IWebSocketServerInitializer) {
     // Creating the WebSocket server
     this.wsServer = new WebSocketServer({
       server: httpServer,

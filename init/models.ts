@@ -10,4 +10,5 @@ export const preloadModels = () => {
       require(modelsPath + "/" + file);
     }
   });
+  console.log("Mongoose Models are loaded to MongoDB");
 };
