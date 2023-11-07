@@ -3,10 +3,10 @@ import fs from "fs";
 export const preloadModels = () => {
   const modelsPath = __dirname + "/../src/data/models";
   fs.readdirSync(modelsPath).forEach(function (file) {
-    if (file == "constants") {
+    if (file == "constants" || file.indexOf(".md")) {
       return;
     }
-    if (-file.indexOf(".js")) {
+    if (-file.indexOf(".ts")) {
       require(modelsPath + "/" + file);
     }
   });

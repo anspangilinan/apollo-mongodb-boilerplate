@@ -7,9 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "ts-node --esm server.ts"
   },
-  "author": "Andrew Niccolo Pangilinan <andrew.pangilinan@innoleaps.com>",
+  "author": "Andrew Niccolo Pangilinan <anspangilinan@gmail.com>",
   "license": "ISC",
-  "repository": "https://github.com/Innoleaps/apollo-mongodb-boilerplate",
+  "repository": "https://github.com/anspangilinan/apollo-mongodb-boilerplate",
   "dependencies": {
     "@apollo/server": "^4.9.4",
     "cors": "^2.8.5",
@@ -25,6 +25,9 @@
   "devDependencies": {
     "@types/cors": "^2.8.15",
     "@types/graphql-upload": "^16.0.4",
-    "ts-node": "^10.9.1"
+    "@types/ws": "^8.5.8",
+    "mongodb-memory-server": "^9.0.1",
+    "ts-node": "^10.9.1",
+    "vitest": "^0.34.6"
   }
 }

@@ -1,21 +1,21 @@
-import mongoose from "mongoose";
+import mongoose, { Connection } from "mongoose";
 import { MONGODB } from "../env";
 
-export const dbInitializer = async () => {
+export const dbInitializer = async (): Promise<Connection> => {
   mongoose.connect(MONGODB.URL, {
     dbName: MONGODB.DBNAME,
     ssl: MONGODB.USE_SSL,
     sslValidate: MONGODB.USE_SSL,
   });
 
-  const db = mongoose.connection;
+  const mongoDbConnection = mongoose.connection;
 
-  db.on("error", (err) => {
+  mongoDbConnection.on("error", (err) => {
     console.error(err);
   });
-  db.on("connected", (err, res) => {
+  mongoDbConnection.on("connected", (err, res) => {
     console.log("Connected to MongoDB");
   });
 
-  return db;
+  return mongoDbConnection;
 };

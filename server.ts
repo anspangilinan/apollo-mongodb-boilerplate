@@ -9,7 +9,7 @@ import { createServer } from "http";
 import { PORT } from "./env";
 
 const startServer = async () => {
-  const db = dbInitializer();
+  const mongoDbConnection = dbInitializer();
   preloadModels();
 
   const apolloServer = new ApolloServerInitializer();
