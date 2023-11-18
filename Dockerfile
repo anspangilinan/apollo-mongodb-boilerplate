@@ -4,7 +4,8 @@ WORKDIR /api
 
 COPY --chown=node:node package*.json .
 
-RUN npm install
+RUN npm install -D
+RUN npm install --only=dev
 RUN mkdir -p node_modules/.cache && chmod -R 777 node_modules/.cache
 RUN mkdir -p /root/.cache/mongodb-binaries
 RUN chown -R node:node node_modules
