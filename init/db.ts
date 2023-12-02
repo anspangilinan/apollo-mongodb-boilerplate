@@ -5,7 +5,6 @@ export const dbInitializer = async (): Promise<Connection> => {
   mongoose.connect(MONGODB.URL, {
     dbName: MONGODB.DBNAME,
     ssl: MONGODB.USE_SSL,
-    sslValidate: MONGODB.USE_SSL,
   });
 
   const mongoDbConnection = mongoose.connection;

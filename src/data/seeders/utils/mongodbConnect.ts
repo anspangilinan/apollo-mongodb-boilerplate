@@ -6,7 +6,6 @@ const connectToMongoDB = async (): Promise<typeof mongoose> => {
     await mongoose.connect(MONGODB.URL, {
       dbName: MONGODB.DBNAME,
       ssl: MONGODB.USE_SSL,
-      sslValidate: MONGODB.USE_SSL,
     });
 
     mongoose.set("strictQuery", true);
