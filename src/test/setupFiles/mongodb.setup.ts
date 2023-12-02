@@ -1,6 +1,6 @@
 import { MongoMemoryServer } from "mongodb-memory-server";
 import * as mongoose from "mongoose";
-import { afterAll, beforeAll } from "vitest";
+import { afterAll, afterEach, beforeAll } from "vitest";
 
 let mongoServer: MongoMemoryServer;
 
@@ -15,3 +15,19 @@ afterAll(async () => {
     await mongoServer.stop();
   }
 });
+
+afterEach(async () => {
+  await clearAllCollections();
+});
+
+async function clearAllCollections(): Promise<void> {
+  const collections = mongoose.connection.collections;
+
+  for (const collectionName in collections) {
+    if (collections.hasOwnProperty(collectionName)) {
+      try {
+        await mongoose.connection.collection(collectionName).deleteMany({});
+      } catch (error) {}
+    }
+  }
+}
