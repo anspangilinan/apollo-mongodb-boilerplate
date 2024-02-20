@@ -1,6 +1,6 @@
 # Models Package
 
-The "models" package contains Mongoose models for various entities used in the Peagle Delivery system. To maintain a structured and organized approach, it is recommended to create a separate folder for each model, encapsulating related files for clarity and maintainability.
+The "models" package contains Mongoose models for various entities. To maintain a structured and organized approach, it is recommended to create a separate folder for each model, encapsulating related files for clarity and maintainability.
 
 ## Guidelines
 
