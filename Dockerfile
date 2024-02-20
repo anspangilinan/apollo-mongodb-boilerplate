@@ -1,17 +1,14 @@
-FROM node:16.20.1
+FROM node:20-slim AS base
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+RUN corepack enable
+COPY . /app
+WORKDIR /app
 
-WORKDIR /api
+FROM base AS prod-deps
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --prod --frozen-lockfile
 
-COPY --chown=node:node package*.json .
-
-RUN npm install -D
-RUN npm install --only=dev
-RUN mkdir -p node_modules/.cache && chmod -R 777 node_modules/.cache
-RUN mkdir -p /root/.cache/mongodb-binaries
-RUN chown -R node:node node_modules
-RUN chown -R node:node /root/.cache
-RUN chmod -R 777 /root/.cache
-COPY --chown=node:node . .
-
+FROM base
+COPY --from=prod-deps /app/node_modules /app/node_modules
 EXPOSE ${PORT}
-CMD [ "npm", "run",  "start" ]
+CMD [ "pnpm", "start" ]

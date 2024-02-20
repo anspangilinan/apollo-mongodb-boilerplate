@@ -24,9 +24,7 @@ const startServer = async () => {
   expressApp.applyApolloMiddleware(apolloServer.server);
   httpServer.listen(PORT, () => {
     console.log(`🚀 GraphQL server ready at http://localhost:${PORT}/graphql`);
-    console.log(
-      `🚀 Websocket ready at :: ws://localhost:${PORT}/subscriptions`
-    );
+    console.log(`🚀 Websocket ready at ws://localhost:${PORT}/subscriptions`);
   });
 };
 startServer();

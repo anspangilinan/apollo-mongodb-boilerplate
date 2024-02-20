@@ -1,3 +1,6 @@
+import dotenv from "dotenv";
+dotenv.config();
+
 const toBool = (val?: string) => {
   return val?.toLowerCase() === "true";
 };
